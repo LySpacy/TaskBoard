@@ -1,0 +1,45 @@
+﻿@using TaskBoard.Domain.Models;
+@using TaskBoard.Domain.Enum;
+@using TaskBoard.Domain.Extensions;
+@model List<UserModel>
+
+<h2>Список пользователей: </h2>
+<a href="@Url.Action("CreateUser", "Users")" class="btn btn-success">Создать пользователя</a>
+<a href="@Url.Action("GetBlackList", "Users")" class="btn btn-dark">Черный список</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Роль</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Role.GetDisplayName()</td>
+                <td>
+                    @if (user.Role != UserRole.Ban)
+                    {
+                        <a href="@Url.Action("UpdateRole","Users", new { id = user.Id })" class="btn btn-primary">Обновить роль</a>
+                        <form asp-action="BanedUser" method="get" style="display:inline;">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger">Забанить пользователя</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="UnBanedUser" method="get" style="display:inline;">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger">Разбанить пользователя</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

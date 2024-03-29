@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@model IEnumerable<ProjectModel>
+@inject IAuthorizationService AuthorizationService
+
+@if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+{
+    <a href="@Url.Action("CreateProject")" class="btn btn-primary">Создать проект</a>
+}
+
+@if (Model == null)
+{
+    <p>Отсутствуют актуальные проекты.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название проекта</th>
+                <th>Количество спринтов</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("GetProject","Projects", new { id = project.Id })">@project.Title</a>
+                    </td>
+                    <td>@project.Sprints.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

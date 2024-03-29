@@ -1,0 +1,78 @@
+﻿@using TaskBoard.Domain.Models;
+@using TaskBoard.Domain.Enum;
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@model TaskModel
+
+<div>
+    <a href="@Url.Action("GetSprint", "Sprints", new { id = Model.SprintId })" class="btn btn-primary">Вернуться к спринту</a>
+    <h2>@Model.Title</h2>
+    <h2>Описание:</h2>
+    <p>@Model.Description</p>
+     @if (!string.IsNullOrEmpty(Model.Comment))
+     {
+        <h3>Комментарий:</h3>
+        <p>@Model.Comment</p>
+     }
+</div>
+@if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+{
+    <a href="@Url.Action("EditTask", new { id = Model.Id })" class="btn btn-primary">Редактировать задачу</a>
+    <a href="@Url.Action("DeleteTask", new { id = Model.Id })" class="btn btn-danger">Удалить задачу</a>
+}
+@{
+    var status = Model.Status;
+    var userId = Guid.Parse(User.Claims.FirstOrDefault(c => c.Type == "userId").Value);
+}
+
+@if (AuthorizationService.AuthorizeAsync(User, null, "AdminPolicy").Result.Succeeded ||
+          Model.Sprint.UserId == userId)
+{
+    @if (status == StatusTask.Expectation)
+    {
+        <a href="@Url.Action("StartTask", "Tasks", new { id = Model.Id })" class="btn btn-success">Приступить к выполнению задачи</a>
+    }
+    else if (status == StatusTask.InProgress)
+    {
+        <a href="@Url.Action("PostponeTask", "Tasks", new { id = Model.Id })" class="btn btn-warning">Отложить задачу</a>
+        <a href="@Url.Action("CompleteTask", "Tasks", new { id = Model.Id })" class="btn btn-primary">Завершить выполнение задачи</a>
+    }   
+    else if (status == StatusTask.Сompleted)
+    {
+        <a href="@Url.Action("StartTask", "Tasks", new { id = Model.Id })" class="btn btn-success">Вернуться к задачи</a>
+    }
+}
+
+<h3>Файлы</h3>
+@if (Model.Files.Any())
+{
+    <ul>
+        @foreach (var file in Model.Files)
+        {
+            <li>
+                @if (!string.IsNullOrEmpty(file.FileName))
+                {
+                    var fileName = System.IO.Path.GetFileName(file.FileName);
+                    <a href="@Url.Action("DownloadFile", "Files", new { id = file.Id })">@fileName</a>
+                }
+                <form asp-action="DeleteFile" asp-controller="Files" method="post">
+                    <input type="hidden" name="id" value="@file.Id" />
+                    <button type="submit" class="btn btn-danger">Удалить файл</button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>В задаче пока нет файлов.</p>
+}
+
+<form asp-action="UploadFileToTask" asp-controller="Files" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="sprintId" value="@Model.Id" />
+    <div class="form-group">
+        <label for="file">Выберите файл для загрузки: </label>
+        <input type="file" class="form-control-file" id="file" name="file" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить файл</button>
+</form>

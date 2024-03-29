@@ -1,0 +1,24 @@
+﻿@using TaskBoard.API.Contracts
+@using TaskBoard.Domain.Models;
+@using TaskBoard.API.Contracts.Task;
+@model CreateTaskRequest
+
+<h2>Создание задачи</h2>
+<form asp-action="CreateSprint" method="post">
+    <input type="hidden" name="SprintId" value="@Model.SprintId">
+    <input type="hidden" name="Status" value="@Model.Status">
+    <div class="form-group"> 
+        <label for="Title">Название:</label>
+        <input type="text" class="form-control" id="Title" name="Title" required>
+    </div>
+    <div class="form-group">
+        <label for="Description">Описание:</label>
+        <textarea class="form-control" id="Description" name="Description" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="Comment">Комментарий:</label>
+        <textarea class="form-control" id="Comment" name="Comment" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать</button>
+    <a href="@Url.Action("GetSprint", "Sprints", new { id = @Model.SprintId })" class="btn btn-secondary">Назад к проекту</a>
+</form>

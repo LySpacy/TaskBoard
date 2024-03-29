@@ -1,0 +1,17 @@
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.Service.deps.json
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.Service.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.Service.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.AssemblyInfoInputs.cache
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.AssemblyInfo.cs
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.csproj.CoreCompileInputs.cache
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\refint\TaskBoard.Service.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\ref\TaskBoard.Service.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.DAL.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.Domain.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.DAL.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.Service\bin\Debug\net8.0\TaskBoard.Domain.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.csproj.AssemblyReference.cache
+D:\Code\testContext\TaskBoard\TaskBoard.Service\obj\Debug\net8.0\TaskBoard.Service.csproj.CopyComplete

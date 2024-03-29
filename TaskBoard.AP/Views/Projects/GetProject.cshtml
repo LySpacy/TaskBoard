@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using TaskBoard.Domain.Models;
+@model ProjectModel
+@inject IAuthorizationService AuthorizationService
+
+<div>
+    <h3>@Model.Title</h3>
+    <p>@Model.Description</p>
+</div>
+@if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+{
+    <a href="@Url.Action("EditProject", new { id = Model.Id })" class="btn btn-primary">Редактировать проект</a>
+    <a href="@Url.Action("DeleteProject", new { id = Model.Id })" class="btn btn-danger">Удалить проект</a>
+    <a href="@Url.Action("CreateSprint","Sprints", new { idProject = Model.Id })" class="btn btn-success">Создать Спринт</a>
+}
+<h3>Спринты</h3>
+@if (Model.Sprints.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Дата завершения</th>
+                <th>Исполнитель</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sprint in Model.Sprints)
+            {
+                <tr>
+                    <td><a href="@Url.Action("GetSprint", "Sprints", new { id = sprint.Id })">@sprint.Title</a></td>
+                    <td>
+                        @(sprint.Description.Length > 30 ? sprint.Description.Substring(0, 30) + "..." : sprint.Description)
+                    </td>
+                    <td>@sprint.DateEnd.ToShortDateString()</td>
+                    <td>
+                        @if (sprint.User != null)
+                        {
+                            <a href="@Url.Action("GetUser", "Users", new { id = sprint.User.Id })">@sprint.User.Name</a>
+                        }
+                        else
+                        {
+                            <span>Исполнитель отсутствует</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>В проекте пока нет спринтов.</p>
+}
+
+<script>
+    function toggleDescription(sprintId) {
+        var fullDescription = document.getElementById("fullDescription_" + sprintId);
+        if (fullDescription.style.display === "none") {
+            fullDescription.style.display = "inline";
+            event.target.textContent = "Скрыть полное описание";
+        } else {
+            fullDescription.style.display = "none";
+            event.target.textContent = "Показать полное описание";
+        }
+    }
+</script>

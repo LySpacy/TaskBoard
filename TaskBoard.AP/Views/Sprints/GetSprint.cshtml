@@ -1,0 +1,115 @@
+﻿@using TaskBoard.Domain.Models;
+@using TaskBoard.Domain.Extensions;
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@model SprintModel
+
+<div>
+    <a href="@Url.Action("GetProject", "Projects", new { id = Model.ProjectId })" class="btn btn-primary">Вернуться к проекту</a>
+    <h3>@Model.Title</h3>
+    <p>Описание:<br />@Model.Description</p>
+    @if (!string.IsNullOrEmpty(Model.Comment))
+    {
+        <p>Комментарий: @Model.Comment</p>
+    }
+    @if (Model.User != null)
+    {
+        <p>Исполнитель: <a href="@Url.Action("GetUser", "Users", new { id = Model.User.Id })">@Model.User.Name</a>
+            @if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+            {
+                <a href="@Url.Action("RemoveUser", "Sprints", new { id = Model.Id })" class="btn btn-secondary">Отстранить исполнителя</a>
+            }</p>
+    }
+    else
+    {
+        <p>Исполнитель: Отсутсвует
+            @if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+            {
+                <a href="@Url.Action("SetUser", "Sprints", new { id = Model.Id })" class="btn btn-secondary">Назначить исполнителя</a>
+            }
+            </p>
+    }
+</div>
+@if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+{
+    <a href="@Url.Action("EditSprint", new { id = Model.Id })" class="btn btn-primary">Редактировать спринт</a>
+    <a href="@Url.Action("DeleteSprint", new { id = Model.Id })" class="btn btn-danger">Удалить спринт</a>
+    <a href="@Url.Action("CreateTask", "Tasks", new { idSprint = Model.Id })" class="btn btn-success">Создать задачу</a>
+}
+
+<h3>Задачи</h3>
+@if (Model.Tasks.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Количество файлов</th>
+                <th>Статус</th>
+                @if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+                {
+                    <th>Действие</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <td><a href="@Url.Action("GetTask", "Tasks", new { id = task.Id })">@task.Title</a></td>
+                    <td>@(task.Description.Length > 20 ? task.Description.Substring(0, 20) + "..." : task.Description)</td>
+                    <td>@task.Files.Count</td>
+                    <td>@task.Status.GetDisplayName()</td>
+                    @if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+                    {
+                        <td><a href="@Url.Action("DeleteTask", "Tasks", new { id = task.Id })" class="btn btn-danger">Удалить</a></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>В спринте пока нет задач.</p>
+}
+<h3>Файлы</h3>
+@if (Model.Files.Any())
+{
+    <ul>
+        @foreach (var file in Model.Files)
+        {
+            <li>
+                @if (!string.IsNullOrEmpty(file.FileName))
+                {
+                    var fileName = System.IO.Path.GetFileName(file.FileName);
+                    <a href="@Url.Action("DownloadFile", "Files", new { id = file.Id })">@fileName</a>
+                }
+                @if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+                {
+                    <form asp-action="DeleteFile" asp-controller="Files" method="post">
+                        <input type="hidden" name="id" value="@file.Id" />
+                        <button type="submit" class="btn btn-danger">Удалить файл</button>
+                     </form>
+                }
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>В спринте пока нет файлов.</p>
+}
+@if (AuthorizationService.AuthorizeAsync(User, null, "AdminOrManagerPolicy").Result.Succeeded)
+{
+    <form asp-action="UploadFileToSprint" asp-controller="Files" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="sprintId" value="@Model.Id" />
+        <div class="form-group">
+            <label for="file">Выберите файл для загрузки: </label>
+            <input type="file" class="form-control-file" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить файл</button>
+    </form>
+}

@@ -1,0 +1,17 @@
+﻿@using TaskBoard.API.Contracts;
+@using TaskBoard.Domain.Extensions;
+@using TaskBoard.Domain.Models;
+@using TaskBoard.Domain.Enum;
+@using TaskBoard.API.Contracts.User;
+@model BanUserRequest
+
+<h2>Создание пользователя</h2>
+<form asp-action="BanedUser" method="post">
+    <input type="hidden" name="Id" value="@Model.Id">  
+    <div class="form-group">
+        <label for="Cause">Причина блокировки:</label>
+        <input type="text" class="form-control" id="Cause" name="Cause" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Заблокировать</button>
+    <a href="@Url.Action("GetAll")" class="btn btn-secondary">Назад к списку пользователе</a>
+</form>

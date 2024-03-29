@@ -1,0 +1,12 @@
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\bin\Debug\net8.0\TaskBoard.Domain.deps.json
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\bin\Debug\net8.0\TaskBoard.Domain.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\bin\Debug\net8.0\TaskBoard.Domain.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.AssemblyInfoInputs.cache
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.AssemblyInfo.cs
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.csproj.CoreCompileInputs.cache
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\refint\TaskBoard.Domain.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\ref\TaskBoard.Domain.dll
+D:\Code\testContext\TaskBoard\TaskBoard.Domain\obj\Debug\net8.0\TaskBoard.Domain.csproj.AssemblyReference.cache

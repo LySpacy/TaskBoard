@@ -1,0 +1,17 @@
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\bin\Debug\net8.0\TaskBoard.DAL.deps.json
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\bin\Debug\net8.0\TaskBoard.DAL.runtimeconfig.json
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\bin\Debug\net8.0\TaskBoard.DAL.dll
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\bin\Debug\net8.0\TaskBoard.DAL.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\bin\Debug\net8.0\TaskBoard.Domain.dll
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\bin\Debug\net8.0\TaskBoard.Domain.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.csproj.AssemblyReference.cache
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.AssemblyInfoInputs.cache
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.AssemblyInfo.cs
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.csproj.CoreCompileInputs.cache
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.csproj.CopyComplete
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.dll
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\refint\TaskBoard.DAL.dll
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.pdb
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\TaskBoard.DAL.genruntimeconfig.cache
+D:\Code\testContext\TaskBoard\TaskBoard.DAL\obj\Debug\net8.0\ref\TaskBoard.DAL.dll

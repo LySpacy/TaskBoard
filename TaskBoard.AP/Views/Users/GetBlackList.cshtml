@@ -1,0 +1,29 @@
+﻿@using TaskBoard.Domain.Models;
+@using TaskBoard.Domain.Extensions;
+@model List<BanModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Дата блокировки</th>
+            <th>Причина блокировки</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var banUser in Model)
+        {
+            <tr>
+                <td>@banUser.User.Name</td>
+                <td>@banUser.User.Email</td>
+                <td>@banUser.DateBan</td>
+                <td>@banUser.Сause</td>
+                <td>
+                    <a href="@Url.Action("UnBanedUser","Users", new { id = banUser.UserId })" class="btn btn-primary">Снять блокировку</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

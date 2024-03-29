@@ -1,0 +1,43 @@
+﻿@using TaskBoard.Domain.Extensions;
+@model UserModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Details</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <h2>User Details</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-3">Name:</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+                    <dt class="col-sm-3">Email:</dt>
+                    <dd class="col-sm-9">@Model.Email</dd>
+                    <dt class="col-sm-3">Роль:</dt>
+                    <dd class="col-sm-9">@Model.Role.GetDisplayName()</dd>
+                </dl>
+            </div>
+        </div>
+     </div>
+        <h3>Спринты:</h3>
+
+            @if (Model.Sprints.Any())
+            {
+                @foreach (var sprint in Model.Sprints)
+                {
+                    <p><a href="@Url.Action("GetSprint", "Sprints", new { id = sprint.Id })">@sprint.Title</a></p>
+                }
+            }
+            else
+            {
+                <p>У пользователя пока нет спринтов</p>
+            }
+</body>
+</html>

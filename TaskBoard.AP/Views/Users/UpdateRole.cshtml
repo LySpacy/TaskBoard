@@ -1,0 +1,19 @@
+﻿@using TaskBoard.API.Contracts;
+@using TaskBoard.Domain.Extensions;
+@using TaskBoard.Domain.Models;
+@using TaskBoard.Domain.Enum;
+@using TaskBoard.API.Contracts.User;
+@model UpdateUserRequest
+
+<h2>Создание пользователя</h2>
+<form asp-action="UpdateRole" method="post">
+    <input type="hidden" name="Name" value="@Model.Name">
+    <input type="hidden" name="Password" value="@Model.Password">
+    <input type="hidden" name="Email" value="@Model.Email">    
+    <div class="form-group">
+        <label for="Role">Роль:</label>
+        <select asp-for="Role" asp-items="Html.GetEnumSelectList<UserRole>().Where(x => x.Value != nameof(UserRole.Ban))">@Model.Role.GetDisplayName()</select>
+    </div>
+    <button type="submit" class="btn btn-primary">Обновить</button>
+    <a href="@Url.Action("GetAll")" class="btn btn-secondary">Назад к списку пользователе</a>
+</form>

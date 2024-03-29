@@ -1,0 +1,28 @@
+﻿@using TaskBoard.API.Contracts;
+@using TaskBoard.API.Contracts.Sprint;
+@model UpdateSprintRequest
+
+<h2>Редактирование Спринта</h2>
+
+<form asp-action="EditSprint" method="post">
+    <div class="form-group">
+        <input type="hidden" name="Id" value="@Model.Id">
+        <input type="hidden" name="ProjectId" value="@Model.ProjectId">
+        <label for="Title">Название:</label>
+        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required>
+    </div>
+    <div class="form-group">
+        <label for="Description">Описание:</label>
+        <textarea class="form-control" id="Description" name="Description" required>@Model.Description</textarea>
+    </div>
+    <div class="form-group">
+        <label for="Comment">Комментарий:</label>
+        <textarea class="form-control" id="Comment" name="Comment">@Model.Comment</textarea>
+    </div>
+    <div class="form-group">
+        <label for="DateEnd">Дата завершения:</label>
+        <input type="date" class="form-control" id="DateEnd" name="DateEnd" value="@Model.DateEnd" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="@Url.Action("GetProject","Projects", new { id = Model.ProjectId })" class="btn btn-secondary">Вернуться</a>
+</form>
